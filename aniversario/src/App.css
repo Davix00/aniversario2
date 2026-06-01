@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@400;600&display=swap');
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #e6f2ff; /* Fondo azul pastel */
+  font-family: 'Playfair Display', serif; /* Tipografía elegante para texto */
+  color: #333;
+}
+
+h1, h2 {
+  font-family: 'Dancing Script', cursive; /* Tipografía romántica (cursiva) para títulos */
+  line-height: 1; /* Evita que las letras choquen cuando bajan al siguiente renglón */
+  letter-spacing: normal; /* Cancela el amontonamiento por defecto que pone Vite */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Cada sección ocupa al menos el alto de la pantalla completa (100vh) */
+section {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  scroll-snap-align: center;
+}
+
+.hero h1 {
+  font-size: 4.5rem; /* Un poco más grande para que luzca la cursiva */
+  color: #000000; /* Color cambiado a negro */
+  margin: 1rem 0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.section-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.memory-card {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.memory-card h2 {
+  font-size: 2.5rem;
+  color: black;
+  margin-top: 1rem;
+}
+
+.footer h2 {
+  font-size: 3.5rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+/* Animación de latido para los corazones */
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
