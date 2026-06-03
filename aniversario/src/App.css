@@ -12,9 +12,28 @@ html {
 }
 
 body {
-  background-color: #e6f2ff; /* Fondo azul pastel */
+  background-color: #160408; /* Fondo vino tinto muy oscuro / noche romántica */
   font-family: 'Playfair Display', serif; /* Tipografía elegante para texto */
-  color: #333;
+  color: #ffe6ea; /* Blanco con un sutil rubor rosado */
+}
+
+/* ==================== Personalización de la Barra de Desplazamiento ==================== */
+::-webkit-scrollbar {
+  width: 10px; /* Barra más delgada y estética */
+}
+
+::-webkit-scrollbar-track {
+  background: #160408;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 77, 133, 0.5); /* Carmín translúcido */
+  border-radius: 10px; /* Bordes redondeados */
+  border: 2px solid #160408; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 77, 133, 0.9); 
 }
 
 h1, h2 {
@@ -34,7 +53,6 @@ h1, h2 {
 section {
   min-height: 100vh;
   width: 100%;
-  max-width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,47 +60,199 @@ section {
   padding: 2rem;
   text-align: center;
   scroll-snap-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
   font-size: 4.5rem; /* Un poco más grande para que luzca la cursiva */
-  color: #000000; /* Color cambiado a negro */
+  color: #ffffff; /* Letras blancas para contrastar con el negro */
   margin: 1rem 0;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 77, 133, 0.5); /* Brillo romántico intenso */
+  z-index: 1;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #666;
+  color: #ffb3c1; /* Párrafos en tono rosa cálido */
+  z-index: 1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Elementos decorativos del Hero */
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #ffb3c1;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(255, 77, 133, 0.4);
+}
+
+.play-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.play-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  color: #ffb3c1;
+  opacity: 0.8;
+  margin-top: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Efecto de luces cinemáticas (Reflectores de ambiente / Bokeh) */
+section::before {
+  content: '';
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  min-width: 400px;
+  min-height: 400px;
+  background: radial-gradient(circle, rgba(255, 77, 133, 0.4) 0%, rgba(255, 77, 133, 0) 70%); /* Foco carmín cálido */
+  border-radius: 50%;
+  filter: blur(60px);
+  top: 0%;
+  left: -5%;
+  z-index: 0;
+  animation: cinematic-float 12s ease-in-out infinite;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  min-width: 300px;
+  min-height: 300px;
+  background: radial-gradient(circle, rgba(255, 200, 150, 0.3) 0%, rgba(255, 180, 162, 0) 70%); /* Foco champagne */
+  border-radius: 50%;
+  filter: blur(60px);
+  bottom: -5%;
+  right: -5%;
+  z-index: 0;
+  animation: cinematic-float 15s ease-in-out infinite reverse;
+}
+
+/* Alterar posiciones en las secciones pares (ej. 2, 4, 6...) cruzando las luces */
+section:nth-child(even)::before {
+  left: auto;
+  right: 5%;
+  top: 15%;
+}
+section:nth-child(even)::after {
+  right: auto;
+  left: 5%;
+  bottom: 15%;
+}
+
+/* Alterar posiciones cada tres secciones (ej. 3, 6...) hacia los bordes laterales */
+section:nth-child(3n)::before {
+  top: 50%;
+  left: -10%;
+  right: auto;
+}
+section:nth-child(3n)::after {
+  bottom: 50%;
+  right: -10%;
+  left: auto;
+}
+
+/* Animación tipo respiración y movimiento suave (Bokeh) */
+@keyframes cinematic-float {
+  0% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+  33% { transform: translate(5vw, -5vh) scale(1.1); opacity: 0.9; }
+  66% { transform: translate(-3vw, 4vh) scale(0.95); opacity: 0.6; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+}
+
+/* Efecto Glassmorphism para los iconos principales */
+.glass-icon {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 77, 133, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.3); /* Reflejo de luz arriba */
+  border-left: 1px solid rgba(255, 255, 255, 0.3); /* Reflejo de luz a la izquierda */
+  border-radius: 50%;
+  padding: 1.8rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 77, 133, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-icon:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 77, 133, 0.3);
+  border-color: rgba(255, 77, 133, 0.4);
+}
+
+/* Estilo moderno para el botón de la flecha */
+.scroll-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(30, 8, 15, 0.6); /* Fondo del botón oscurecido en tonos vino */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 180, 162, 0.4); /* Brillo champagne */
+  cursor: pointer;
 }
 
 .section-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 .memory-card {
-  background: white;
+  background: rgba(30, 8, 15, 0.55); /* Fondo cristal vino translúcido */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil */
   padding: 3rem 2rem;
   border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra oscura para separar del fondo */
   width: 100%;
   max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .memory-card h2 {
   font-size: 2.5rem;
-  color: black;
+  color: #ffffff;
   margin-top: 1rem;
 }
 
 .footer h2 {
   font-size: 3.5rem;
-  color: black;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -95,4 +265,251 @@ section {
   0% { transform: scale(1); }
   50% { transform: scale(1.15); }
   100% { transform: scale(1); }
+}
+
+/* Estilos para los botones que abren el carrusel de fotos */
+.bnt-carrousel-fotos {
+  background: rgba(30, 8, 15, 0.8);
+  border: 2px solid #ff4d85;
+  border-radius: 50%;
+  padding: 15px; /* Espacio interior para hacerlo un botón táctil */
+  box-sizing: content-box;
+  cursor: pointer; /* Cambia el mouse a una manita */
+  box-shadow: 0 0 15px rgba(255, 77, 133, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse-ring 2s infinite; /* Animación para llamar la atención */
+}
+
+.bnt-carrousel-fotos:hover {
+  transform: translateY(-5px) scale(1.15); /* Efecto de elevación */
+  background: rgba(255, 77, 133, 0.2); /* Se ilumina por dentro */
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 77, 133, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(255, 77, 133, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 77, 133, 0); }
+}
+
+/* ==================== Estilos del Modal/Carrusel ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 4, 8, 0.85); /* Tono vino ultra oscuro para el fondo */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+  background: rgba(30, 8, 15, 0.45); /* Cristal esmerilado vino */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil brillante */
+  border-radius: 24px;
+  padding: 1.5rem;
+  padding-bottom: 4rem; /* Espacio para los botones inferiores */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 77, 133, 0.15); /* Sombra y brillo interno */
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  object-fit: contain; /* Ajusta la foto sin deformarla */
+  z-index: 10;
+}
+
+.carousel-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 5px; /* Aumenta el área táctil */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 20;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(255, 77, 133, 0.8));
+}
+
+.close-btn { 
+  top: 10px; 
+  right: 10px; 
+  width: 45px; 
+  height: 45px; 
+}
+.close-btn:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 10px rgba(255, 77, 133, 0.8));
+}
+
+.prev-btn { left: calc(50% - 50px); bottom: 15px; }
+.next-btn { right: calc(50% - 50px); bottom: 15px; }
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1rem;
+    padding-bottom: 2rem;
+    width: 92%;
+  }
+
+  .prev-btn { left: calc(20% - 10px); bottom: 10px; }
+  .next-btn { right: calc(20% - 10px); bottom: 10px; }
+  .close-btn { top: 10px; right: 10px; }
+}
+
+/* ==================== Estilos del Mensaje Final ==================== */
+.celebration-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 9rem 0 5rem 0; /* Aumentado para salvar la altura completa de la vela */
+  position: relative;
+  z-index: 10;
+}
+
+.character {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.cake-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake {
+  font-size: 7rem;
+  line-height: 1;
+  filter: drop-shadow(0 10px 20px rgba(255, 77, 133, 0.4));
+}
+
+.candle {
+  position: absolute;
+  top: -55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candle-number {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: #ff4d85;
+  text-shadow: 0 0 15px rgba(255, 77, 133, 0.8), 2px 2px 0px #fff;
+  font-family: 'Dancing Script', cursive;
+  line-height: 1;
+}
+
+.flame {
+  position: absolute;
+  top: -35px;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px #ffcc00);
+}
+
+.pump-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  z-index: 10;
+  position: relative;
+}
+
+.pump-container p {
+  font-size: 1.2rem;
+  color: #ffb3c1;
+}
+
+.wind-emoji-btn {
+  font-size: 3.5rem;
+  cursor: pointer;
+  filter: drop-shadow(0 0 15px rgba(255, 77, 133, 0.5));
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.success-message {
+  font-size: 3rem;
+  color: #ff4d85;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 0 0 20px rgba(255, 77, 133, 0.6);
+  margin-top: 1rem;
+}
+
+.balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.balloon {
+  position: absolute;
+  font-size: 4rem;
+  filter: drop-shadow(0 5px 15px rgba(255, 77, 133, 0.4));
+}
+
+/* ==================== Adaptación a Móviles (Footer) ==================== */
+@media (max-width: 768px) {
+  .footer h2 {
+    font-size: 1.8rem;
+  }
+  .celebration-container {
+    gap: 0.2rem;
+    margin: 5rem 0 2rem 0; /* Margen aún mayor para cubrir la flama en celulares */
+  }
+  .character {
+    font-size: 2.5rem;
+  }
+  .cake {
+    font-size: 4.5rem;
+  }
+  .candle {
+    top: -35px;
+  }
+  .candle-number {
+    font-size: 2.5rem;
+  }
+  .flame {
+    top: -20px;
+    font-size: 1.5rem;
+  }
+  .success-message {
+    font-size: 1.8rem;
+  }
+  .wind-emoji-btn {
+    font-size: 2.5rem;
+  }
+  .pump-container p {
+    font-size: 1.1rem;
+  }
 }
