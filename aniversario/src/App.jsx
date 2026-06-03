@@ -27,7 +27,7 @@ function App() {
     if (pumpCount < 10) {
       const newCount = pumpCount + 1;
       setPumpCount(newCount);
-      if (newCount === 10) {
+      if (newCount === 3) {
         setIsBlownOut(true);
       }
     }
@@ -191,7 +191,7 @@ function App() {
         <FadeInSection>
           {!isBlownOut ? (
             <div className="pump-container">
-              <p>¡Toca el viento para apagar la velita!</p>
+              <p>¡Toca el viento rapidamente para apagar la velita!</p>
               <motion.div
                 style={{ fontSize: '2.5rem', cursor: 'pointer' }}
                 className="wind-emoji-btn"
