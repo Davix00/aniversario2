@@ -99,12 +99,14 @@ function App() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
+          style={{ padding: "0 1rem", maxWidth: "100%", boxSizing: "border-box" }}
         >
           <motion.p 
             className="hero-subtitle"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
+            style={{ fontSize: "clamp(1rem, 4vw, 1.5rem)" }}
           >
             Para mi persona favorita
           </motion.p>
@@ -113,6 +115,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
+            style={{ fontSize: "clamp(1.5rem, 6vw, 3rem)", lineHeight: 1.3, margin: "1rem 0" }}
           >
             Te cuento que me encuentro enamorado, y siento que esta vez, es la correcta.
           </motion.h1>
@@ -284,8 +287,8 @@ function App() {
               <motion.div
                 key={balloon.id}
                 className="balloon"
-                initial={{ top: '100vh', left: balloon.x }}
-                animate={{ top: '-20vh' }}
+                initial={{ y: '100vh', x: balloon.x }}
+                animate={{ y: '-20vh' }}
                 transition={{ duration: balloon.duration, delay: balloon.delay, ease: "linear" }}
               >
                 {balloon.emoji}
